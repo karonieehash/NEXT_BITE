@@ -1,20 +1,12 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+const isProd = process.env.NODE_ENV === "production";
+
+const nextConfig = {
+  output: "export",                      
+  basePath: isProd ? "/NEXT_BITE" : "", 
+  images: { unoptimized: true },
+  trailingSlash: true,                   
 };
 
 export default nextConfig;
